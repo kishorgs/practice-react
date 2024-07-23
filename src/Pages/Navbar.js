@@ -1,5 +1,6 @@
 //Importing all the use full packages and components
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
   return (
@@ -9,9 +10,9 @@ function Navbar(props) {
     >
       <div className="container-fluid">
         {/* Navbar title */}
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
 
         {/* Navbar toggle button */}
         <button
@@ -31,45 +32,45 @@ function Navbar(props) {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {/* Navbar home item */}
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link className="nav-link active" aria-current="page" to="/">
                 {props.home}
-              </a>
+              </Link>
             </li>
 
             {/* Navbar about item */}
             <li className="nav-item">
-              <a className="nav-link" href="/About">
+              <Link className="nav-link" to="/About">
                 {props.about}
-              </a>
+              </Link>
             </li>
 
             {/* Navbar dropdown item */}
             <li className="nav-item dropdown">
               {/* Dropdown toggle button */}
-              <a
+              <Link
                 className="nav-link dropdown-toggle"
-                href="/"
+                to="/"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 {props.dropdown}
-              </a>
+              </Link>
 
               {/* Dropdown menu */}
               <ul className="dropdown-menu">
                 {/* Dropdown Item 1 */}
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <Link className="dropdown-item" to="/">
                     {props.action}
-                  </a>
+                  </Link>
                 </li>
 
                 {/* Dropdown Item 2 */}
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <Link className="dropdown-item" to="/">
                     {props.anotherAction}
-                  </a>
+                  </Link>
                 </li>
 
                 {/* Dropdown Item 3 */}
@@ -79,18 +80,18 @@ function Navbar(props) {
 
                 {/* Dropdown Item 4 */}
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <Link className="dropdown-item" to="/">
                     {props.somethingElse}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
 
             {/* Disable icon button */}
             <li className="nav-item">
-              <a className="nav-link disabled" aria-disabled="true" href="/">
+              <Link className="nav-link disabled" aria-disabled="true" to="/">
                 {props.disabled}
-              </a>
+              </Link>
             </li>
           </ul>
 
