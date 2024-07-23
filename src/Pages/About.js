@@ -2,12 +2,17 @@ import React from "react";
 
 function About() {
   
-
-  
   return (
+    // This ia about us component
     <div className="container">
+
+      {/* Component header */}
       <h2 className="my-3">About us</h2>
+
+      {/* Accordion component block */}
       <div className="accordion" id="accordionExample">
+
+        {/* Accordion item block */}
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
@@ -38,6 +43,8 @@ function About() {
             </div>
           </div>
         </div>
+
+        {/* Accordion item block */}
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
@@ -68,6 +75,8 @@ function About() {
             </div>
           </div>
         </div>
+
+        {/* Accordion item block */}
         <div className="accordion-item">
           <h2 className="accordion-header">
             <button
