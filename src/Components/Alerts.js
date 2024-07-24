@@ -9,6 +9,7 @@ function Alert(props) {
 
   return (
     <>
+    <div style={{height:"50px"}}>
       {/* Showing the alert message when the alert dialog is called */}
       {props.alert && (
         <div
@@ -18,6 +19,7 @@ function Alert(props) {
           <strong>{capitalize(props.alert.message)}</strong>
         </div>
       )}
+      </div>
     </>
   );
 }

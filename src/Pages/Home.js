@@ -122,14 +122,25 @@ function Home(props) {
 
         {/* Text to show number of words and characters */}
         <p>
-          {text.split(" ").length - 1} word and {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          word and {text.length} characters
         </p>
 
-        <p>{0.008 * text.split(" ").length} minutes read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          minutes read
+        </p>
 
         {/* Preview of the text */}
         <h2>Preview</h2>
-        <p>{text.length > 0 ? text : "Enter somthing to preview here"}</p>
+        <p>{text.length > 0 ? text : "Enter something to preview here"}</p>
       </div>
     </>
   );
