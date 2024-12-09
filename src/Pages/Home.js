@@ -13,6 +13,8 @@ function Home(props) {
   //Method to convert the text to uppercase
   const handleUpClick = () => {
     setText(text.toUpperCase());
+    props.showAlert("Converted to uppercase", "success");
+    console.log("Uppercase");
   };
 
   //Method to convert the text to lowercase
@@ -27,9 +29,14 @@ function Home(props) {
 
   //Method to copy the text to clipboard
   const handleCopyClick = () => {
-    text.select();
-    navigator.clipboard.writeText(text);
-    alert("Text copied to clipboard");
+    if (text) {
+      text.select();
+      navigator.clipboard.writeText(text);
+      alert("Text copied to clipboard");
+      props.showAlert("Text has been copied", "warning");
+    } else {
+      alert("Please enter a text");
+    }
   };
 
   //Method to remove extra spaces in the textFiled
@@ -46,22 +53,28 @@ function Home(props) {
         <h1>{props.heading}</h1>
 
         {/* Text area to take input text */}
-        <div class="form-floating">
+        <div className="form-floating">
           <textarea
             className="form-control my-3"
             id="floatingTextarea2"
             value={text}
             onChange={handleOnChange}
-            style={{ height: "300px" }}
+            style={{
+              height: "300px",
+              background: props.mode === "dark" ? "black" : "white",
+              color: props.mode === "light" ? "black" : "white",
+            }}
           ></textarea>
-          <label for="floatingTextarea2">{props.commentsLabel}</label>
+          <label htmlFor="floatingTextarea2" color="red">
+            {props.commentsLabel}
+          </label>
         </div>
 
         {/* Button to convert text to uppercase */}
         <button
           type="button"
           onClick={handleUpClick}
-          class="btn btn-primary btn-lg mx-2"
+          className="btn btn-primary btn-lg mx-2"
         >
           {props.convertButton}
         </button>
@@ -70,7 +83,7 @@ function Home(props) {
         <button
           type="button"
           onClick={handleLowClick}
-          class="btn btn-primary btn-lg mx-2"
+          className="btn btn-primary btn-lg mx-2"
         >
           {props.convertButton}
         </button>
@@ -79,7 +92,7 @@ function Home(props) {
         <button
           type="button"
           onClick={handleClearClick}
-          class="btn btn-primary btn-lg mx-2"
+          className="btn btn-primary btn-lg mx-2"
         >
           Clear
         </button>
@@ -88,7 +101,7 @@ function Home(props) {
         <button
           type="button"
           onClick={handleCopyClick}
-          class="btn btn-primary btn-lg mx-2"
+          className="btn btn-primary btn-lg mx-2"
         >
           Copy text
         </button>
@@ -97,7 +110,7 @@ function Home(props) {
         <button
           type="button"
           onClick={handleRemoveSpaceClick}
-          class="btn btn-primary btn-lg mx-2"
+          className="btn btn-primary btn-lg mx-2"
         >
           Remove extra space
         </button>
@@ -109,14 +122,25 @@ function Home(props) {
 
         {/* Text to show number of words and characters */}
         <p>
-          {text.split(" ").length - 1} word and {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          word and {text.length} characters
         </p>
 
-        <p>{0.008 * text.split(" ").length} minutes read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          minutes read
+        </p>
 
         {/* Preview of the text */}
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter something to preview here"}</p>
       </div>
     </>
   );
